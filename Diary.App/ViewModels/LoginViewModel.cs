@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Input;
+﻿using System.ComponentModel;
 using Diary.App.Models;
 
 namespace Diary.App.ViewModels;
@@ -12,12 +10,6 @@ public class LoginViewmodel
     public LoginViewmodel()
     {
         _user = new User();
-        LoginCommand = new RelayCommand(Login);
-    }
-
-    private void Login(object o)
-    {
-        Username = "Giglo";
     }
 
     public string Username
@@ -28,14 +20,23 @@ public class LoginViewmodel
         {
             if (_user.Username == value) return;
             _user.Username = value;
-            Console.WriteLine(value);
             OnPropertyChanged("Username");
         }
     }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public string Password
+    {
+        get => _user.Password;
 
-    public ICommand LoginCommand { get; set; }
+        set
+        {
+            if (_user.Password == value) return;
+            _user.Password = value;
+            OnPropertyChanged("Password");
+        }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     private void OnPropertyChanged(string propertyName)
     {

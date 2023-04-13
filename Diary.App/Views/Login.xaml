@@ -9,18 +9,18 @@
         mc:Ignorable="d"
         Title="Login" Height="500" Width="300">
     <Window.DataContext>
-        <local:LoginViewmodel></local:LoginViewmodel>
+        <local:LoginViewmodel />
     </Window.DataContext>
     <StackPanel VerticalAlignment="Center">
-        <Image></Image>
+        <Image />
         <StackPanel>
-            <Label Content="Username"></Label>
-            <TextBox Text="{Binding Username, Mode=TwoWay}"></TextBox>
+            <Label Content="Username" />
+            <TextBox Text="{Binding Username, Mode=TwoWay}" />
         </StackPanel>
         <StackPanel>
-            <Label Content="Password"></Label>
-            <TextBox Text=""></TextBox>
+            <Label Content="Password" />
+            <TextBox Text="{Binding Password, Mode=TwoWay}" />
         </StackPanel>
-        <Button Command="{Binding}">EZZZZ</Button>
+        <Button Content="Login" HorizontalAlignment="Center" Name="LoginButton" Click="LoginButton_OnClick" />
     </StackPanel>
 </Window>
