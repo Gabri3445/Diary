@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Diary.App.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Diary.App.Databases;
 

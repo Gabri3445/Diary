@@ -1,4 +1,4 @@
-﻿namespace Diary.App.Databases;
+﻿namespace Diary.App.Models;
 
 public class User
 {

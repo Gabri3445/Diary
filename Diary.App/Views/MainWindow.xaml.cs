@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Diary.App;
+namespace Diary.App.Views;
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
