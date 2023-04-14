@@ -13,7 +13,9 @@ public static class DatabaseSingleton
         {
             lock (Padlock)
             {
-                return _instance ??= new DatabaseContext();
+                _instance ??= new DatabaseContext();
+                _instance.Database.EnsureCreated();
+                return _instance;
             }
         }
     }
