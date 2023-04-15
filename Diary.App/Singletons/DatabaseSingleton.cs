@@ -16,6 +16,9 @@ public static class DatabaseSingleton
             lock (Padlock)
             {
                 _instance ??= new DatabaseContext();
+#if DEBUG
+                _instance.Database.EnsureDeleted();
+#endif
                 if (!_databaseCreated) _databaseCreated = _instance.Database.EnsureCreated();
                 return _instance;
             }
