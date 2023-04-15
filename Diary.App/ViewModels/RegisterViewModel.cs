@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Diary.App.Databases;
 using Diary.App.Models;
 using Diary.App.Singletons;
+using Diary.App.Views;
 using Microsoft.EntityFrameworkCore;
 
 namespace Diary.App.ViewModels;
