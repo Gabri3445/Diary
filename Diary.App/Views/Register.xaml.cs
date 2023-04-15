@@ -9,8 +9,8 @@ public partial class Register : Window
 
     public Register()
     {
-        _dataContext = DataContext as RegisterViewModel;
         InitializeComponent();
+        _dataContext = DataContext as RegisterViewModel;
     }
 
     private void RegisterButton_OnClick(object sender, RoutedEventArgs e)
