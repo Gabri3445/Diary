@@ -3,17 +3,20 @@ using System.ComponentModel;
 using System.Linq;
 using Diary.App.Models;
 using Diary.App.Singletons;
+using Diary.App.Views;
 
 namespace Diary.App.ViewModels;
 
 public class LoginViewmodel
 {
-    private User _user;
+    private readonly DatabaseContext _databaseContext;
+    private readonly User _user;
 
     public LoginViewmodel()
     {
         _user = new User();
         LoginButtonClicked += Login;
+        _databaseContext = DatabaseSingleton.Instance;
     }
 
     public string Username
@@ -56,11 +59,16 @@ public class LoginViewmodel
 
     private void Login(object? sender, EventArgs eventArgs)
     {
-        if (Username == "" && Password == "") return;
+        if (Username == "" || Password == "" || Username == null || Password == null) return;
 
-        var userCollection = DatabaseSingleton.Instance.Users.ToList();
-        var user = userCollection.FirstOrDefault(x => x.Username == Username);
-        if (user == null) return; //Consider adding a dialogue to register a new user
+        var user = _databaseContext.Users.FirstOrDefault(x => x.Username == Username);
+
+        if (user == null)
+        {
+            var viewModel = sender as Login;
+            viewModel?.Register();
+            return;
+        }
 
         if (user.Password != Password) return;
 
