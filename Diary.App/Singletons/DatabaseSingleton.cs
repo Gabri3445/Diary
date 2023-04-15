@@ -5,6 +5,8 @@ namespace Diary.App.Singletons;
 public static class DatabaseSingleton
 {
     private static DatabaseContext? _instance;
+    private static bool _databaseCreated;
+
     private static readonly object Padlock = new();
 
     public static DatabaseContext Instance
@@ -14,7 +16,7 @@ public static class DatabaseSingleton
             lock (Padlock)
             {
                 _instance ??= new DatabaseContext();
-                _instance.Database.EnsureCreated();
+                if (!_databaseCreated) _databaseCreated = _instance.Database.EnsureCreated();
                 return _instance;
             }
         }
