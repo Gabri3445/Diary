@@ -27,7 +27,7 @@ public class RegisterViewModel
         set
         {
             if (_user.Username == value) return;
-            _user.Username = value;
+            if (value != null) _user.Username = value;
             OnPropertyChanged("Username");
         }
     }
@@ -39,7 +39,7 @@ public class RegisterViewModel
         set
         {
             if (_user.Password == value) return;
-            _user.Password = value;
+            if (value != null) _user.Password = value;
             OnPropertyChanged("Password");
         }
     }
