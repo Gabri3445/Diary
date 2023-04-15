@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using Diary.App.Databases;
 using Diary.App.Models;
 using Diary.App.Singletons;
 using Diary.App.Views;
@@ -19,26 +20,26 @@ public class LoginViewmodel
         _databaseContext = DatabaseSingleton.Instance;
     }
 
-    public string Username
+    public string? Username
     {
         get => _user.Username;
 
         set
         {
             if (_user.Username == value) return;
-            _user.Username = value;
+            if (value != null) _user.Username = value;
             OnPropertyChanged("Username");
         }
     }
 
-    public string Password
+    public string? Password
     {
         get => _user.Password;
 
         set
         {
             if (_user.Password == value) return;
-            _user.Password = value;
+            if (value != null) _user.Password = value;
             OnPropertyChanged("Password");
         }
     }
