@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Diary.App.Databases;
 using Diary.App.Models;
 using Diary.App.Singletons;
+using Microsoft.EntityFrameworkCore;
 
 namespace Diary.App.ViewModels;
 
@@ -60,14 +60,14 @@ public class RegisterViewModel
 
     private async void Register(object? sender, EventArgs eventArgs)
     {
-        await RegisterAsync(sender, eventArgs)
+        await RegisterAsync(sender, eventArgs);
     }
 
     private async Task RegisterAsync(object? sender, EventArgs eventArgs)
     {
         if (Username == "" || Password == "" || Username == null || Password == null) return;
 
-        var user = _databaseContext.Users.FirstOrDefault(x => x.Username == Username);
+        var user = await _databaseContext.Users.FirstOrDefaultAsync(x => x.Username == Username).ConfigureAwait(false);
 
         if (user != null) return; // User already exists
 
