@@ -71,6 +71,13 @@ public class RegisterViewModel
 
         if (user != null) return; // User already exists
 
-        _databaseContext.Users.Add(new User { Username = Username, Password = Password });
+        await _databaseContext.Users.AddAsync(new User {Username = Username, Password = Password})
+            .ConfigureAwait(false);
+
+        await _databaseContext.SaveChangesAsync().ConfigureAwait(false);
+
+        var view = sender as Register;
+
+        view?.Close();
     }
 }
